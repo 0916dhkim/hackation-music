@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/0916dhkim/hackation-music/issues"
   },
-  "homepage": "https://github.com/0916dhkim/hackation-music#readme"
+  "homepage": "https://github.com/0916dhkim/hackation-music#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
