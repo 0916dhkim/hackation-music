@@ -1,0 +1,19 @@
+{
+  "name": "hackation-music",
+  "version": "1.0.0",
+  "description": "Music Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0916dhkim/hackation-music.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0916dhkim/hackation-music/issues"
+  },
+  "homepage": "https://github.com/0916dhkim/hackation-music#readme"
+}
