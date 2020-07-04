@@ -112,3 +112,7 @@ for epoch in range(N_EPOCHS):
   print('Epoch: %d' %(epoch + 1), " | time in %d minutes, %d seconds" %(mins, secs))
   print(f'\tLoss: {train_loss:.4f}(train)\t|\tAcc: {train_acc * 100:.1f}%(train)')
   print(f'\tLoss: {valid_loss:.4f}(valid)\t|\tAcc: {valid_acc * 100:.1f}%(valid)')
+
+print('Checking the results of test dataset...')
+test_loss, test_acc = test(test_dataset)
+print(f'\tLoss: {test_loss:.4f}(test)\t|\tAcc: {test_acc * 100:.1f}%(test)')
