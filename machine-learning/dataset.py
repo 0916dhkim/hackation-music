@@ -23,7 +23,7 @@ def _csv_iterator(data_path, ngrams, yield_cls=False):
             tokens = row[1]
             tokens = tokenizer(tokens)
             if yield_cls:
-                yield int(row[4]) - 1, ngrams_iterator(tokens, ngrams)
+                yield 1 if int(row[4]) == 3 else 0, ngrams_iterator(tokens, ngrams)
             else:
                 yield ngrams_iterator(tokens, ngrams)
 
