@@ -2,6 +2,7 @@ import torch
 import torchtext
 from torchtext.datasets import text_classification
 from torchtext.data import TabularDataset, Field, LabelField
+from torchtext.data.utils import get_tokenizer, ngrams_iterator
 from torch.utils.data import DataLoader
 from torch.utils.data.dataset import random_split
 import os
@@ -116,3 +117,11 @@ for epoch in range(N_EPOCHS):
 print('Checking the results of test dataset...')
 test_loss, test_acc = test(test_dataset)
 print(f'\tLoss: {test_loss:.4f}(test)\t|\tAcc: {test_acc * 100:.1f}%(test)')
+
+def predict(text):
+  tokenizer = get_tokenizer("basic_english")
+  vocab = train_dataset.get_vocab()
+  with torch.no_grad():
+    text = torch.tensor([vocab[token] for token in ngrams_iterator(tokenizer(text), NGRAMS)])
+    output = model(text, torch.tensor([0]))
+    return "Relaxing" if output.argmax(1).item() == 1 else "Not Relaxing"
