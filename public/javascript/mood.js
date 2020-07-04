@@ -14,11 +14,11 @@ colors = {
   anxious: '#64BCDE',
   relaxed: '#93A3ED',
 };
-
+let currMood = 'anxious';
 const handleMoodClick = (e) => {
   const lableTarget = e.target.getAttribute('for');
   console.log(lableTarget);
-  const currMood = document.querySelector(`#${lableTarget}`).value;
+  currMood = document.querySelector(`#${lableTarget}`).value;
   console.log(currMood);
   document.querySelector(`.face`).src = `images/faces/${currMood}.png`;
   document.querySelector('.smile-area').style.backgroundColor =

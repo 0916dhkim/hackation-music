@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music mood enhancer</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>Relax Tracks</title>
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
@@ -11,69 +12,134 @@
     />
     <link rel="stylesheet" href="css/radio.css" />
     <script src="javascript/mood.js" defer></script>
+    <link rel="stylesheet" href="css/player-style.css" />
+    <link rel="stylesheet" href="css/hide.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="javascript/player.js" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascript/hide.js" defer></script>
   </head>
   <body>
-    <h1 class="question">How Are You Feeling Today?</h1>
-    <div class="smile-area">
-      <img src="images/faces/anxious.png" alt="" class="face" />
-      <div class="mood-btn-container">
-        <input
-          type="radio"
-          name="Button"
-          class="ButtonState"
-          checked
-          id="Button1"
-          value="anxious"
-        />
-        <label class="Button" for="Button1">Anxious</label>
+    <div id="page1">
+      <h1 class="question">How Are You Feeling Today?</h1>
+      <div class="smile-area">
+        <img src="images/faces/anxious.png" alt="" class="face" />
+        <div class="mood-btn-container">
+          <input
+            type="radio"
+            name="Button"
+            class="ButtonState"
+            checked
+            id="Button1"
+            value="anxious"
+          />
+          <label class="Button" for="Button1">Anxious</label>
 
-        <input
-          type="radio"
-          name="Button"
-          class="ButtonState"
-          id="Button2"
-          value="lonely"
-        />
-        <label class="Button" for="Button2">Lonely</label>
+          <input
+            type="radio"
+            name="Button"
+            class="ButtonState"
+            id="Button2"
+            value="lonely"
+          />
+          <label class="Button" for="Button2">Lonely</label>
 
-        <input
-          type="radio"
-          name="Button"
-          class="ButtonState"
-          id="Button3"
-          value="sad"
-        />
-        <label class="Button" for="Button3">Sad</label>
+          <input
+            type="radio"
+            name="Button"
+            class="ButtonState"
+            id="Button3"
+            value="sad"
+          />
+          <label class="Button" for="Button3">Sad</label>
 
-        <input
-          type="radio"
-          name="Button"
-          class="ButtonState"
-          id="Button4"
-          value="happy"
-        />
-        <label class="Button" for="Button4">Happy</label>
+          <input
+            type="radio"
+            name="Button"
+            class="ButtonState"
+            id="Button4"
+            value="happy"
+          />
+          <label class="Button" for="Button4">Happy</label>
 
-        <input
-          type="radio"
-          name="Button"
-          class="ButtonState"
-          id="Button5"
-          value="relaxed"
-        />
-        <label class="Button" for="Button5">Relaxed</label>
+          <input
+            type="radio"
+            name="Button"
+            class="ButtonState"
+            id="Button5"
+            value="relaxed"
+          />
+          <label class="Button" for="Button5">Relaxed</label>
 
-        <input
-          type="radio"
-          name="Button"
-          class="ButtonState"
-          id="Button6"
-          value="love"
-        />
-        <label class="Button" for="Button6">Love</label>
+          <input
+            type="radio"
+            name="Button"
+            class="ButtonState"
+            id="Button6"
+            value="love"
+          />
+          <label class="Button" for="Button6">Love</label>
+        </div>
+        <div class="recom-container">
+          <button class="recom-btn">GET RECOMMENDATIONS</button>
+        </div>
       </div>
-      <div class="recom-container">
-        <button class="recom-btn">GET RECOMMENDATIONS</button>
+    </div>
+    <div id="page2" class="hide">
+      <div class="bg-class"></div>
+      <div class="back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </div>
+      <div class="container">
+        <div class="shock"></div>
+        <div class="glow">
+          <div class="text-container">
+            <span id="song-name" class="text">SONG NAME</span>
+            <br />
+            <span id="artist-name" class="text">Artist</span>
+            <br />
+            <div class="playback_controls">
+              <button onclick="skip('back')">
+                <i class="fa fa-fast-backward"></i>
+              </button>
+              <button onclick="playpause()">
+                <i class="fa fa-play"></i><i class="fa fa-pause"></i>
+              </button>
+              <button onclick="stop()"><i class="fa fa-stop"></i></button>
+              <button onclick="skip('fwd')">
+                <i class="fa fa-fast-forward"></i>
+              </button>
+            </div>
+            <br />
+            <div id="seekbar">
+              <input
+                type="range"
+                oninput="setPos(this.value)"
+                id="seek"
+                value="0"
+                max=""
+              />
+            </div>
+            <br />
+            <div class="volume_controls">
+              <button id="mute" onclick="mute()">
+                <i class="fa fa-volume-up"></i>
+              </button>
+              <input
+                type="range"
+                id="volume"
+                oninput="setVolume(this.value)"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

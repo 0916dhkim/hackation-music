@@ -1,0 +1,14 @@
+{
+  "name": "music-mood-enhancer-frontend",
+  "version": "1.0.0",
+  "description": "frontend for hackation project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shikhar sharma",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
