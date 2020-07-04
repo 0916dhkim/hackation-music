@@ -1,0 +1,39 @@
+.ButtonState {
+  display: none;
+}
+.Button {
+  padding: 0.5rem 1rem;
+  margin: 4px;
+  background: #ccc;
+  cursor: pointer;
+  width: 7rem;
+  text-align: center;
+  background-color: rgba(136, 134, 134, 0.438);
+  border-radius: 100px;
+  border: none;
+  transition: all 0.2s;
+  outline: none;
+  position: relative;
+}
+.ButtonState:checked + .Button {
+  background: #fff;
+  /* outline: 2px solid #fff;
+  outline-offset: 0.5rem; */
+}
+
+.ButtonState:checked + .Button::after {
+  content: '';
+  position: absolute;
+  left: -0.3rem;
+  top: -5px;
+  right: -0.3rem;
+  bottom: -5px;
+  border: 1px solid rgb(255, 255, 255);
+  z-index: -1;
+  background-color: transparent;
+  border-radius: 100px;
+}
+
+.Button:hover {
+  transform: scale(1.1);
+}

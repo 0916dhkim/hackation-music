@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music mood enhancer</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/radio.css" />
+    <script src="javascript/mood.js" defer></script>
+  </head>
+  <body>
+    <h1 class="question">How Are You Feeling Today?</h1>
+    <div class="smile-area">
+      <img src="images/faces/anxious.png" alt="" class="face" />
+      <div class="mood-btn-container">
+        <input
+          type="radio"
+          name="Button"
+          class="ButtonState"
+          checked
+          id="Button1"
+          value="anxious"
+        />
+        <label class="Button" for="Button1">Anxious</label>
+
+        <input
+          type="radio"
+          name="Button"
+          class="ButtonState"
+          id="Button2"
+          value="lonely"
+        />
+        <label class="Button" for="Button2">Lonely</label>
+
+        <input
+          type="radio"
+          name="Button"
+          class="ButtonState"
+          id="Button3"
+          value="sad"
+        />
+        <label class="Button" for="Button3">Sad</label>
+
+        <input
+          type="radio"
+          name="Button"
+          class="ButtonState"
+          id="Button4"
+          value="happy"
+        />
+        <label class="Button" for="Button4">Happy</label>
+
+        <input
+          type="radio"
+          name="Button"
+          class="ButtonState"
+          id="Button5"
+          value="relaxed"
+        />
+        <label class="Button" for="Button5">Relaxed</label>
+
+        <input
+          type="radio"
+          name="Button"
+          class="ButtonState"
+          id="Button6"
+          value="love"
+        />
+        <label class="Button" for="Button6">Love</label>
+      </div>
+      <div class="recom-container">
+        <button class="recom-btn">GET RECOMMENDATIONS</button>
+      </div>
+    </div>
+  </body>
+</html>
