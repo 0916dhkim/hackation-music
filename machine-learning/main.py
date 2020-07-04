@@ -1,21 +1,30 @@
 import torch
 import torchtext
 from torchtext.datasets import text_classification
+from torchtext.data import TabularDataset, Field, LabelField
 from torch.utils.data import DataLoader
 from torch.utils.data.dataset import random_split
 import os
 import time
 from model import TextSentiment
+from dataset import _setup_datasets
 NGRAMS = 2
 
 if not os.path.isdir("./.data"):
   os.mkdir("./.data")
 
-train_dataset, text_dataset = text_classification.DATASETS["AG_NEWS"](
-  root="./.data",
+# train_dataset, test_dataset = text_classification.DATASETS["AG_NEWS"](
+#   root="./.data",
+#   ngrams=NGRAMS,
+#   vocab=None
+# )
+train_dataset, test_dataset = _setup_datasets(
+  train_csv_path="data/train.csv",
+  test_csv_path="data/test.csv",
   ngrams=NGRAMS,
   vocab=None
 )
+
 BATCH_SIZE = 16
 device =torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
