@@ -6,7 +6,7 @@ const router = require("./routes");
 const port = process.env.PORT || 3000;
 
 // Serve static contents from static directory.
-app.use(express.static("static"));
+app.use(express.static("public"));
 
 // Use API endpoint from routes module.
 app.use(router);
