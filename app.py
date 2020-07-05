@@ -1,7 +1,7 @@
 #
 # Flask server module
 #
-from main import predict
+from scrape_spotify import relaxingTracks, nonRelaxingTracks
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -24,38 +24,13 @@ def hello_world():
 # Return an array of music URL
 @app.route("/music")
 def music():
-  return jsonify(
+  return jsonify([
     {
-      "title": "Intro And Tarantelle",
-      "artist": "ABC",
-      "mood": 'regret',
-      "url": "http://www.openmusicarchive.org/audio/Intro_And_Tarantelle.mp3",
-    },
-    {
-      "title": "Dont Go Way Nobody",
-      "artist": "EFG",
-      "mood": 'alone',
-      "url": "http://www.openmusicarchive.org/audio/Dont_Go_Way_Nobody.mp3"
-    },
-    {
-      "title": "April Kisses",
-      "artist": "HIJ",
-      "mood": 'sad',
-      "url": "http://www.openmusicarchive.org/audio/April_Kisses.mp3"
-    },
-    {
-      "title": "Eddies Twister",
-      "artist": "KLM",
-      "mood": 'relaxed',
-      "url": "http://www.openmusicarchive.org/audio/Eddies_Twister.mp3"
-    },
-    {
-      "title": "Little Bits",
-      "artist": "NOP",
-      "mood": 'happy',
-      "url": "http://www.openmusicarchive.org/audio/Little_Bits.mp3"
-    }
-  )
+      "title": track.title,
+      "artist": track.artist,
+      "url": track.preview
+    } for track in relaxingTracks
+  ])
 
 
 # Determine if "text" is relaxing or not.
