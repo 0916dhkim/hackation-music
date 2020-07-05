@@ -4,7 +4,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 CSV_FIELDS = ['index','songName','artist','moodID','spotifyID','danceability','energy','key','loudness','mode','speechiness','acousticness','instrumentalness','liveness','valence','tempo']
 RANGE_LOWER = 0
-RANGE_UPPER = 400
+RANGE_UPPER = 100
 INFILE = 'trainNumbered.csv'
 OUTFILE = 'output.csv'
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
