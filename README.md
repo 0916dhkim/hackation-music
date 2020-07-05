@@ -18,6 +18,13 @@ Install dependencies.
 ```bash
 pip install -r requirements.txt
 ```
+You need 2 environment variables for this app.
+Create `.env` file at the project root, and add the
+following environment variables.
+- SPOTIFY_CLIENT_ID
+- SPOTIFY_CLIENT_SECRET
+
+You can get these values from <https://developer.spotify.com/dashboard/>
 
 ## Start Flask Server
 ```bash
