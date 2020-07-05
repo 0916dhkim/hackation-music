@@ -25,7 +25,7 @@ const showPlayer = async () => {
     showBoth();
     page1.classList.add('hide');
     state.currIndex = 0;
-    // color changer
+    // color filler
 
     document.querySelector('.bg-class').style.backgroundColor =
       colors[currMood];
@@ -56,7 +56,7 @@ const songEndedHandler = () => {
   state.currIndex++;
   if (state.currIndex < state.playlist.length) {
     moods = ['#64BCDE', '#b8b8f4', '#F6914F', '#F9CA79', '#93A3ED', '#F9CCE4'];
-
+    // color changer
     document.querySelector('.bg-class').style.backgroundColor =
       moods[state.currIndex % moods.length];
     document.querySelector('.shock').style.backgroundColor =
