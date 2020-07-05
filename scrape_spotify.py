@@ -53,7 +53,7 @@ async def browseToplists() -> List[str]:
 
 
 # Get tracks in playlist.
-async def playlistTracks(playlistId: str) -> List[str]:
+async def playlistTracks(playlistId: str) -> List[Track]:
   async with httpx.AsyncClient() as client:
     res = await client.get(
       f"https://api.spotify.com/v1/playlists/{playlistId}/tracks",
@@ -73,6 +73,10 @@ async def prepareTracks():
   for playlist in playlistIds:
     tracks = await playlistTracks(playlist)
     for track in tracks:
+      # Omit null preview url.
+      if track.preview is None:
+        print(track, "missing preview")
+        continue
       print(track)
       if predict(track.title) is "Relaxing":
         relaxingTracks.append(track)
