@@ -22,48 +22,19 @@ const showPlayer = async () => {
     );
     state.playlist = res.data;
 
-    // //============================placeholder playlist===================================//
-    // state.playlist = [
-    //   {
-    //     title: `Intro And Tarantelle`,
-    //     artist: `ABC`,
-    //     mood: 'regret',
-    //     url: 'http://www.openmusicarchive.org/audio/Intro_And_Tarantelle.mp3',
-    //   },
-    //   {
-    //     title: `Dont Go Way Nobody`,
-    //     artist: `EFG`,
-    //     mood: 'alone',
-    //     url: 'http://www.openmusicarchive.org/audio/Dont_Go_Way_Nobody.mp3',
-    //   },
-    //   {
-    //     title: `April Kisses`,
-    //     artist: `HIJ`,
-    //     mood: 'sad',
-    //     url: 'http://www.openmusicarchive.org/audio/April_Kisses.mp3',
-    //   },
-    //   {
-    //     title: `Eddies Twister`,
-    //     artist: `KLM`,
-    //     mood: 'relaxed',
-    //     url: 'http://www.openmusicarchive.org/audio/Eddies_Twister.mp3',
-    //   },
-    //   {
-    //     title: `Little Bits`,
-    //     artist: `NOP`,
-    //     mood: 'happy',
-    //     url: 'http://www.openmusicarchive.org/audio/Little_Bits.mp3',
-    //   },
-    // ];
-
     showBoth();
     page1.classList.add('hide');
+    state.currIndex = 0;
+    // color changer
 
     document.querySelector('.bg-class').style.backgroundColor =
       colors[currMood];
     document.querySelector('.shock').style.backgroundColor = colors[currMood];
     document.querySelector('.glow').style.backgroundColor = colors[currMood];
-    state.currIndex = 0;
+
+    // NULL URL FIX
+    while (!state.playlist[state.currIndex].url) state.currIndex++;
+
     song.src = state.playlist[state.currIndex].url;
     song.play();
     shock.classList.add('btn--shockwave', 'is-active');
@@ -73,7 +44,7 @@ const showPlayer = async () => {
     document.querySelector('#artist-name').innerHTML =
       state.playlist[state.currIndex].artist;
   } catch (err) {
-    // alert(`Server Error`);
+    alert(`Server Error`);
     console.log(err);
   }
 };
@@ -84,11 +55,18 @@ document.querySelector('.back').addEventListener('click', showHome);
 const songEndedHandler = () => {
   state.currIndex++;
   if (state.currIndex < state.playlist.length) {
-    currMood = state.playlist[state.currIndex].mood;
+    moods = ['#64BCDE', '#b8b8f4', '#F6914F', '#F9CA79', '#93A3ED', '#F9CCE4'];
+
     document.querySelector('.bg-class').style.backgroundColor =
-      colors[currMood];
-    document.querySelector('.shock').style.backgroundColor = colors[currMood];
-    document.querySelector('.glow').style.backgroundColor = colors[currMood];
+      moods[state.currIndex % moods.length];
+    document.querySelector('.shock').style.backgroundColor =
+      moods[state.currIndex % moods.length];
+    document.querySelector('.glow').style.backgroundColor =
+      moods[state.currIndex % moods.length];
+
+    // NULL URL FIX
+    while (!state.playlist[state.currIndex].url) state.currIndex++;
+
     song.src = state.playlist[state.currIndex].url;
     document.querySelector('#song-name').innerHTML =
       state.playlist[state.currIndex].title;
