@@ -1,14 +1,24 @@
 from dotenv import load_dotenv
+from spotipy.oauth2 import SpotifyClientCredentials
 import asyncio
 import httpx
 from main import predict
 from typing import List
+import os
 
 
 # Load environment variables.
 load_dotenv()
 
-token = "BQB_8iAXJllM2lC3tXCwYX33bgBxnVFDDBIKRHNkwzE2WI-2yU5izmOcCtyVe7I6i2_uTJkkR7bhtih2FasbT7-82isR6OLVpN0GEHR4gyttZOq2SpYVZa0-ubn1-CEoDZ_o2K_IDMlUke4PD1x7PgYxsNo"
+# Use spotipy package for maanaging access tokens.
+if os.getenv("SPOTIFY_CLIENT_ID") is None:
+  raise Exception("Environment variable SPOTIFY_CLIENT_ID is required.")
+if os.getenv("SPOTIFY_CLIENT_SECRET") is None:
+  raise Exception("Environment variable SPOTIFY_CLIENT_SECRET is required.")
+spotify = SpotifyClientCredentials(
+  client_id=os.getenv("SPOTIFY_CLIENT_ID"),
+  client_secret=os.getenv("SPOTIFY_CLIENT_SECRET")
+)
 
 
 class Track:
@@ -35,7 +45,7 @@ async def browseToplists() -> List[str]:
       headers={
         "accept": "application/json",
         "content-type": "application/json",
-        "authorization": "Bearer " + token
+        "authorization": "Bearer " + spotify.get_access_token(as_dict=False)
       }
     )
     playlistIds = [i["id"] for i in res.json()["playlists"]["items"]]
@@ -50,7 +60,7 @@ async def playlistTracks(playlistId: str) -> List[str]:
       headers={
         "accept": "application/json",
         "content-type": "application/json",
-        "authorization": "Bearer " + token
+        "authorization": "Bearer " + spotify.get_access_token(as_dict=False)
       }
     )
     tracks = [i["track"] for i in res.json()["items"]]
