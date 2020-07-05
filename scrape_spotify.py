@@ -41,7 +41,7 @@ nonRelaxingTracks: List[Track] = []
 async def browseToplists() -> List[str]:
   async with httpx.AsyncClient() as client:
     res = await client.get(
-      "https://api.spotify.com/v1/browse/categories/toplists/playlists",
+      "https://api.spotify.com/v1/browse/categories/toplists/playlists?limit=50",
       headers={
         "accept": "application/json",
         "content-type": "application/json",
