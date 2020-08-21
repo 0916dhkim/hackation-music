@@ -64,6 +64,10 @@ async def playlistTracks(playlistId: str) -> List[Track]:
       }
     )
     tracks = [i["track"] for i in res.json()["items"]]
+    tracks = filter(
+        lambda track: track is not None,
+        tracks
+    )
   return [ Track(track["id"], track["preview_url"], track["name"], track["artists"][0]["name"]) for track in tracks ]
 
 # Scrape tracks from Spotify
